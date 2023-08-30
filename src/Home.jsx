@@ -7,11 +7,12 @@ import Footer from './components/Footer';
 import Loading from './components/Loading';
 import CardBar from './components/CardBar';
 import SortComponent from './components/SortComponent';
+import Navbar from './components/Navbar';
 
 const Home = () => {
   const [source, setSource] = useState("");
   const [destination, setDestination] = useState("");
-  const [isLoading,setIsLoading]=useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -33,39 +34,50 @@ const Home = () => {
         .then(res => res.json())
         .then(data => {
           setData(data);
-          // console.log(data);
         })
-      
-      setDestination("");
-      setSource("");
+        .catch(err => console.log(err));
+
+
     }
 
   }
+  useEffect(() => {
+    if (!source && !destination) {
+    setIsLoading(true);
+    fetch("https://content.newtonschool.co/v1/pr/63b70222af4f30335b4b3b9a/buses")
+      .then(res => res.json())
+      .then(data => {
+        setData(data);
+        setIsLoading(false);
+      })
+      .catch(err => console.log(err));
+    }
+  }, [source, destination])
 
   // sorting
   const sortDeperature = () => {
-    
+
     const filteredData = [...data].sort((a, b) => {
       const timeA = a.departureTime.split(":");
       const timeB = b.departureTime.split(":");
-    
+
       const hourA = parseInt(timeA[0]);
       const hourB = parseInt(timeB[0]);
-      
+
       const minuteA = parseInt(timeA[1].slice(0, 2));
       const minuteB = parseInt(timeB[1].slice(0, 2));
 
       const periodA = timeA[1].slice(2);
       const periodB = timeB[1].slice(2);
-    
+
       if (periodA === "AM" && periodB === "PM") {
         return -1;
       }
-    
+
       if (periodA === "PM" && periodB === "AM") {
         return 1;
       }
-    
+
       if (hourA === hourB) {
         if (minuteA === minuteB) {
           return 0;
@@ -73,19 +85,19 @@ const Home = () => {
           return minuteA < minuteB ? -1 : 1;
         }
       }
-    
+
       return hourA < hourB ? -1 : 1;
     });
     setData(filteredData);
-   
+
 
   }
   const sortArival = () => {
-    
+
     const filteredData = [...data].sort((a, b) => {
       const timeA = a.arrivalTime.split(":");
       const timeB = b.arrivalTime.split(":");
-    
+
       const hourA = parseInt(timeA[0]);
       const hourB = parseInt(timeB[0]);
 
@@ -94,15 +106,15 @@ const Home = () => {
 
       const periodA = timeA[1].slice(2);
       const periodB = timeB[1].slice(2);
-    
+
       if (periodA === "AM" && periodB === "PM") {
         return -1;
       }
-    
+
       if (periodA === "PM" && periodB === "AM") {
         return 1;
       }
-    
+
       if (hourA === hourB) {
         if (minuteA === minuteB) {
           return 0;
@@ -110,65 +122,66 @@ const Home = () => {
           return minuteA < minuteB ? -1 : 1;
         }
       }
-    
+
       return hourA < hourB ? -1 : 1;
     });
     setData(filteredData);
-   
-
-  }
- 
-
-    const sortRating = () => {
-      alert("rating data not present API \n Hard coded value")
-    }
-
-    const sortPrice = () => {
-      setData("");
-      const filteredData = [...data].sort((item1, item2) => item1.ticketPrice - item2.ticketPrice);
-      setData(filteredData);
-
-      // console.log(data);
-    }
 
 
-
-    return (
-      <>
-        <div id="main">
-          <form className='input-wrapper' onSubmit={searchChange}>
-            <div className='single-InputField'>
-              {/* from */}
-              <label>FROM</label>
-              <input type='text' value={source} onChange={(e) => setSource(e.target.value)} />
-            </div>
-            <div className='single-InputField arrow'>
-
-              <div>&hArr;</div>
-            </div>
-            <div className='single-InputField'>
-              {/* to */}
-              <label>TO</label>
-              <input type='text' value={destination} onChange={(e) => setDestination(e.target.value)} />
-            </div>
-            <div className='single-InputField'>
-              <label>DATE</label>
-              <input type='date' />
-            </div>
-            <button type='submit' >Search Buses</button>
-          </form>
-
-        </div>
-        <div className='bus-svg'><img src={Logo} alt='bus'/></div>
-        <div style={{ background: 'red', padding: '10px' }}>
-          {!isLoading && <SortComponent sortDeperature={sortDeperature} sortRating={sortRating} sortPrice={sortPrice} sortArival={sortArival}/>}
-          {isLoading ?  <Loading /> : (data.map((item, i) => <CardBar key={i} item={item} />)) }
-
-          <Footer />
-        </div>
-      </>
-    )
   }
 
 
-  export default Home;
+  const sortRating = () => {
+    alert("rating data not present API \n Hard coded value");
+  }
+
+  const sortPrice = () => {
+    setData("");
+    const filteredData = [...data].sort((item1, item2) => item1.ticketPrice - item2.ticketPrice);
+    setData(filteredData);
+
+    // console.log(data);
+  }
+
+
+
+  return (
+    <>
+      <Navbar />
+      <div id="main">
+        <form className='input-wrapper' onSubmit={searchChange}>
+          <div className='single-InputField'>
+            {/* from */}
+            <label>FROM</label>
+            <input type='text' value={source} onChange={(e) => setSource(e.target.value)} />
+          </div>
+          <div className='single-InputField arrow'>
+
+            <div>&hArr;</div>
+          </div>
+          <div className='single-InputField'>
+            {/* to */}
+            <label>TO</label>
+            <input type='text' value={destination} onChange={(e) => setDestination(e.target.value)} />
+          </div>
+          <div className='single-InputField'>
+            <label>DATE</label>
+            <input type='date' />
+          </div>
+          <button type='submit' >Search Buses</button>
+        </form>
+
+      </div>
+      <div className='bus-svg'><img src={Logo} alt='bus' /></div>
+      <div style={{ background: 'red', padding: '10px' }}>
+        {!isLoading && <SortComponent sortDeperature={sortDeperature} sortRating={sortRating} sortPrice={sortPrice} sortArival={sortArival} />}
+        {isLoading ? <Loading /> : (data.map((item, i) => <CardBar key={i} item={item} />))}
+
+        <Footer />
+      </div>
+    </>
+  )
+}
+
+
+export default Home;

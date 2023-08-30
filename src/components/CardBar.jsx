@@ -1,15 +1,7 @@
 import React from 'react'
 
 const CardBar = ({item}) => {
-// console.log(item);
-// arrivalTime : "5:00AM"
-// busName : "maxx Bus"
-// date : "2023-03-25"
-// departureTime : "6:00AM"
-// destination : "mumbai"
-// id : "3"
-// source : "pune"
-// ticketPrice : "900"
+
   return (
     <div style={{background:'white',margin:'10px'}}>
 
