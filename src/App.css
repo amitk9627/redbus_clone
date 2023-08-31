@@ -1,16 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-body{
+*{
+    margin: 0;
+}
+body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
-.login{
+
+.login {
     display: flex;
     height: 100vh;
     background-color: rgb(181, 177, 172);
 }
-.signup{
+
+.signup {
     display: flex;
     height: 100vh;
     width: 100vw;
@@ -18,23 +23,27 @@ body{
     align-items: center;
     background-color: rgb(181, 177, 172);
 }
-.form{
+
+.form {
     background-color: white;
     padding: 15px;
     border-radius: 10px;
     text-align: center;
 }
-.form form{
+
+.form form {
     padding: 10px;
-   
+
 }
-.form input{
-    margin:20px ;
+
+.form input {
+    margin: 20px;
     height: 30px;
     font-size: 1.2rem;
     padding: 4px;
 }
-.form button{
+
+.form button {
     background-color: rgb(60, 60, 237);
     color: white;
     font-size: 1.3rem;
@@ -42,78 +51,195 @@ body{
     padding: 8px;
     border-radius: 8px;
 }
-.form button:hover{
+
+.form button:hover {
     background-color: rgba(239, 15, 15, 0.7);
 }
-.logo{
-    position:absolute;
+
+.logo {
+    position: absolute;
     top: 15px;
     left: 15px;
 }
-#main{
-    margin: 20px 70px;
-    
-}
-.input-wrapper{
+
+#main {
+
+    background: url(https://s3.rdbuz.com/web/images/homeV2/HomeBannerImg.svg) 0% 0% / cover no-repeat;
+    background-repeat: no-repeat;
+    height: 60vh;
+   
     display: flex;
-    background-color: rgb(224, 226, 227);
     justify-content: center;
     align-items: center;
-    padding:40px 10px;
-    flex-wrap: wrap;
+    background-color: #f4f4f4;
+    position: relative;
+}
+.heading{
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bolder;
+    margin-bottom: 10px;
+  
+}
+.input-wrapper {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    justify-content: center;
+    align-items: center;
+   
+    margin: 0 8rem;
+    margin-bottom: 100px;
+    gap: 10px;
+    flex-wrap: no-wrap;
     border-radius: 10px;
 }
-.single-InputField{
+
+.single-InputField {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 0px 30px;
+    height: 100px;
 }
-.arrow{
+
+.arrow {
     background-color: red;
-    border-radius:50%;
+    border-radius: 50%;
     padding: 2px;
-    color:white;
+    color: white;
     margin-top: 15px;
     margin-right: -10px;
     font-size: 1.4rem;
 }
-.single-InputField label{
+
+.single-InputField label {
     font-weight: 700;
     font-size: 1rem;
+    color: rgb(172, 172, 172);
 }
-.single-InputField input{
+
+.single-InputField input {
     width: 100%;
-    padding:0 10px;
+    padding: 0 10px;
     height: 30px;
     border: none;
     outline: none;
     font-size: 1.2rem;
+    background-color: rgb(243, 243, 243);
 }
-.input-wrapper button{
-    background-color: red;
-    font-size: 1.3rem;
-    margin-top: 15px;
-    padding:0 12px;
+
+.input-wrapper button {
+    background-color: #e55454;
+    font-size: 1.1rem;
+  
+    padding: auto 12px;
     height: 30px;
     border: none;
     outline: none;
     color: white;
     cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
 }
-.bus-svg{
+
+.sButton {
+    border-radius: 0 10px 10px 0;
+
+}
+
+.bus-svg {
     text-align: center;
     margin: 0;
     padding-bottom: 0;
 }
-.navlink{
-    display:flex;
+
+.navlink {
+    display: flex;
     padding: 5px;
-    align-items:center;
-    flex-direction:column;
+    align-items: center;
+    flex-direction: column;
     border-radius: 5px;
-    transition:background-color  .3s ease-in-out;
+    transition: background-color .3s ease-in-out;
 }
-.navlink:hover{
+
+.navlink:hover {
     background-color: rgb(223, 219, 219);
+}
+.ribbon{
+    margin: 70px auto;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.about-wrapper{
+    display: flex;
+    margin: 150px 100px;
+ 
+}
+.headingAbout{
+    font-size: 3rem;
+    font-weight: normal;
+}
+.subheading{
+    margin-top: 50px;
+    font-size: 1.3rem;
+}
+.secAbout{
+    width: 35.25rem;
+    background-image: url(https://s3.rdbuz.com/web/images/homeV2/AboutUs/aboutUsImg.svg);
+    position: relative;
+    height: 39.25rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.aboutImage{
+    width: 670px;
+    height: 401px;
+    position: relative;
+    bottom: -14rem;
+    left: -5rem;
+}
+.aboutPlans{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px ;
+    gap: 20px;
+}
+.aboutPlans p{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+@media (max-width:780px) {
+    #main {
+        height: 90vh;
+    }
+
+    .input-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        padding: 30px 10px;
+    }
+    .heading{
+        font-size: 2rem;
+    }
+    .input-wrapper button {
+        height: 20px;
+        font-size: 1rem;
+    }
+
+    .single-InputField {
+        height: 50px;
+    }
+    .sButton{
+        border-radius: 10px;
+    }
+    .ribbon{
+    
+        margin:30px auto;
+          width: 90%;
+      }
 }

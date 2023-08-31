@@ -7,7 +7,11 @@ const CardBar = ({item}) => {
 
         <div style={{display:'flex',justifyContent:"space-around",alignItems:'center'}}>
 
-            <div><p style={{fontSize:"2rem",fontWeight:'700', whiteSpace:"wrap" ,width: '200px'  }}>{item.busName.toUpperCase().slice(0,25)}</p></div>
+            <div>
+                <p style={{fontSize:"2rem",fontWeight:'700', whiteSpace:"wrap" ,width: '200px'  }}>
+                    {item.busName.toUpperCase().slice(0,25)}
+                </p>
+            </div>
 
             <div>
                 <div style={{textAlign:'center'}}>

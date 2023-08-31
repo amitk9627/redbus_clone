@@ -8,6 +8,8 @@ import Loading from './components/Loading';
 import CardBar from './components/CardBar';
 import SortComponent from './components/SortComponent';
 import Navbar from './components/Navbar';
+import Ribbon from './container/Ribbon';
+import About from './container/About';
 
 const Home = () => {
   const [source, setSource] = useState("");
@@ -15,42 +17,38 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    fetchedData();
-  }, [])
-  const fetchedData = async () => {
-    setIsLoading(true);
-    const res = await fetch("https://content.newtonschool.co/v1/pr/63b70222af4f30335b4b3b9a/buses");
-    const jsonData = await res.json();
-    setIsLoading(false);
-    setData(jsonData);
+  // useEffect(() => {
+  //   fetchedData();
+  // }, [])
+  // const fetchedData = async () => {
+  //   setIsLoading(true);
+  //   const res = await fetch("https://content.newtonschool.co/v1/pr/63b70222af4f30335b4b3b9a/buses");
+  //   const jsonData = await res.json();
+  //   setIsLoading(false);
+  //   setData(jsonData);
 
-  }
+  // }
 
   const searchChange = (e) => {
     e.preventDefault();
     if (source && destination) {
+      setIsLoading(true);
       fetch(`https://content.newtonschool.co/v1/pr/63b70222af4f30335b4b3b9a/buses?source=${source}&destination=${destination}`)
         .then(res => res.json())
         .then(data => {
           setData(data);
+          setIsLoading(false);
         })
         .catch(err => console.log(err));
-
-
+    } else {
+      setIsLoading(true)
     }
 
   }
   useEffect(() => {
     if (!source && !destination) {
-    setIsLoading(true);
-    fetch("https://content.newtonschool.co/v1/pr/63b70222af4f30335b4b3b9a/buses")
-      .then(res => res.json())
-      .then(data => {
-        setData(data);
-        setIsLoading(false);
-      })
-      .catch(err => console.log(err));
+      setIsLoading(true);
+      
     }
   }, [source, destination])
 
@@ -149,36 +147,50 @@ const Home = () => {
     <>
       <Navbar />
       <div id="main">
-        <form className='input-wrapper' onSubmit={searchChange}>
-          <div className='single-InputField'>
-            {/* from */}
-            <label>FROM</label>
-            <input type='text' value={source} onChange={(e) => setSource(e.target.value)} />
-          </div>
-          <div className='single-InputField arrow'>
+        <div>
+          <h1 className='heading'>India’s No. 1 Bus Ticket Booking Site</h1>
+          <form className='input-wrapper' onSubmit={searchChange}>
+            <div className='single-InputField'>
+              {/* from */}
 
-            <div>&hArr;</div>
-          </div>
-          <div className='single-InputField'>
-            {/* to */}
-            <label>TO</label>
-            <input type='text' value={destination} onChange={(e) => setDestination(e.target.value)} />
-          </div>
-          <div className='single-InputField'>
-            <label>DATE</label>
-            <input type='date' />
-          </div>
-          <button type='submit' >Search Buses</button>
-        </form>
+              <label>FROM</label>
+              <input type='text' value={source} onChange={(e) => setSource(e.target.value)} />
+            </div>
+            <div className=' arrow'>
 
+              <div>&hArr;</div>
+            </div>
+            <div className='single-InputField'>
+              {/* to */}
+              <label>TO</label>
+              <input type='text' value={destination} onChange={(e) => setDestination(e.target.value)} />
+            </div>
+            <div className='single-InputField'>
+              <label>DATE</label>
+              <input type='date' />
+            </div>
+            <div style={{ background: "#e55454" }} className='sButton single-InputField'>
+              <button type='submit' >Search Buses</button>
+            </div>
+
+          </form>
+        </div>
       </div>
+      {
+        !isLoading && <>
       <div className='bus-svg'><img src={Logo} alt='bus' /></div>
       <div style={{ background: 'red', padding: '10px' }}>
         {!isLoading && <SortComponent sortDeperature={sortDeperature} sortRating={sortRating} sortPrice={sortPrice} sortArival={sortArival} />}
-        {isLoading ? <Loading /> : (data.map((item, i) => <CardBar key={i} item={item} />))}
-
-        <Footer />
+        {
+          !isLoading &&
+          (data.map((item, i) => <CardBar key={i} item={item} />))
+        }
       </div>
+      </>}
+      <Ribbon />
+      <About />
+
+      <Footer />
     </>
   )
 }
