@@ -10,7 +10,7 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [msg, setMsg] = useState("");
-    const {}=useContext(LoginData);
+    const { setLogindata}=useContext(LoginData);
     const Navigate = useNavigate();
 
     const handleLogin = () => {
@@ -29,8 +29,8 @@ const Login = () => {
             }
             axios.post("https://academics.newtonschool.co/api/v1/user/login", data, config)
                 .then(response => {
-                    //    setTokenAll(response.data);
-                    Navigate("/home")
+                      setLogindata(response);
+                    Navigate("/home");
                 })
                 .catch(err => {
                     setMsg("Login unsuccessfull");

@@ -169,13 +169,14 @@ body {
     margin: 70px auto;
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 80vw;
 }
 .about-wrapper{
     display: flex;
-    margin: 150px 100px;
- 
+    margin: 150px auto;
+    width: 70vw;
 }
+
 .headingAbout{
     font-size: 3rem;
     font-weight: normal;
@@ -210,6 +211,59 @@ body {
     align-items: center;
     gap: 10px;
 }
+.kjnk3h{
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+.dfugvy{
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.jdfie{
+   font-size: 2rem;  
+   font-weight: 700;
+}
+.bnfgi{
+    font-size: 1.4rem;
+    background-color: white;
+    padding: 10px ;
+    font-weight: 500;
+}
+.gilst{
+    font-size: 1.7rem;
+    color: white;
+    font-weight: 700;
+}
+.contact-wrapper{
+    background-image: url(https://s1.rdbuz.com/web/images/homeV2/appinstall/appInstallbg.svg);
+    display: flex;
+    border-radius: 48px;
+    padding: 2rem;
+    flex-direction: column;
+    gap: 2rem;
+    background-size: cover;
+    background-position: right center;
+    margin: 50px auto;
+    width: 70vw;
+    
+   
+}
+.contactsub{
+    display: flex;
+    justify-content:space-evenly;
+    flex-direction: row;
+    
+}
+
+@media (max-width:1024px){
+     .aboutImage{
+        width: 500px;
+        height: 350px;
+        position: relative;
+        bottom: -17rem;
+        left: -3rem;
+    }
+}
 @media (max-width:780px) {
     #main {
         height: 90vh;
@@ -238,8 +292,59 @@ body {
         border-radius: 10px;
     }
     .ribbon{
-    
+        display: flex;
+        justify-content: center;
         margin:30px auto;
-          width: 90%;
-      }
+        width: 95vw;
+    }
+    .about-wrapper{
+        display: flex;
+        margin: 40px 25px;
+    }
+    .abwrapper{
+        width: 100vw;
+    }
+    .headingAbout{
+        font-size: 1.5rem;
+        font-weight: normal;
+    }
+   
+    .subheading{
+        margin-top: 25px;
+        font-size: 1.1rem;
+    }
+    .secAbout{
+        display: none;
+    }
+    
+    .kjnk3h{
+        font-size: 1rem;
+        font-weight: 200;
+    }
+    .dfugvy{
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+    .jdfie{
+        font-size: 1.5rem;  
+        font-weight: 600;
+    }
+    .bnfgi{
+        font-size: 1.2rem;
+        background-color: white;
+        padding: 3px ;
+        font-weight: 300;
+    }
+    .gilst{
+        font-size: 1.2rem;
+        color: white;
+        font-weight: 500;
+    }
+    .contactsub{
+        display: flex;
+        justify-content:space-evenly;
+        flex-direction: column;
+        gap:30px;
+        
+    }
 }

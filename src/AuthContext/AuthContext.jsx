@@ -3,6 +3,7 @@ export const LoginData = createContext(null);
 
 const AuthContext = ({ children }) => {
     const [logindata, setLogindata] = useState("");
+   
     return (
         <LoginData.Provider value={{ logindata, setLogindata }}>
             {children}

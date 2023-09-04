@@ -3,7 +3,7 @@ import React from 'react'
 const About = () => {
   return (
     <div className='about-wrapper'>
-        <div>
+        <div className='abwrapper'>
             <p className='headingAbout'>NOW, <span style={{fontWeight:"700"}}>GET MORE THAN JUST BUS </span>TICKETS WITH REDBUS!</p>    
             <p className='subheading'>Rent Cabs, Tempo Travellers & Buses with best drivers</p>
             <div className='aboutPlans'>
